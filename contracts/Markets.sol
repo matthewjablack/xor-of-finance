@@ -8,52 +8,42 @@ contract Markets {
     struct Market {
       uint poolBalance;
       bytes32 riskMetric; 
+      uint[] requestIndexes;
     }
 
     struct Request {
-      address borrower;
-      address lender;
-
-      // uint borrowerId; 
-      // uint lenderId; 
-      //borrower
-      //lender 
-      //contract reference --> address 
-      // address contractReference;
-
-      //interest in the amount 
+      address debtors;
+      address creditors;
+      uint amount;
+      bytes32 interest;
     }
 
-    //post-POC questions: what's cheaper? storing 2D arrays in contract storage/memory or initiating new contracts
+    mapping (uint => Request) requests;
 
-
-
-    //only done for POC -- needs to be revisited (storage too expensive)
-    //needs a decentralized ledger of markets 
     Market[] public markets; 
 
 
     //4) multiple markets within contract as array of market structs 
     //each market will have details on timestamps involved (time variable t determines the time over which a lender gets his money back in the event of a default)
 
-    function createMarket(bytes32 riskMetric) {
-      
+    function createMarket(bytes32 _riskMetric) {
+      uint[] memory _requestIndexes;
+      markets.push(Market(0, _riskMetric, _requestIndexes));
     }
 
 
-    function getDebtors(uint marketIndex) returns (uint) {
-        return markets[marketIndex].debtors;
+    // function getDebtors(uint marketIndex) returns (uint) {
+    //   return markets[marketIndex].debtors;
+    // }
 
-    }
-
-    function getCreditors(uint marketIndex) returns (uint) {
-        return markets[marketIndex].creditors;
-        //
-    }
+    // function getCreditors(uint marketIndex) returns (uint) {
+    //     return markets[marketIndex].creditors;
+    //     //
+    // }
 
 
     //this function needs to be permissioned intelligently..
-    function incrementPoolBalance (address from, uint marketId, uint amount) returns (boolean) {
+    function incrementPoolBalance (address from, uint marketId, uint amount) returns (bool) {
         //receive coins from someone adding to the lending pool, 
         //making sure to record their contribution on-chain
 
@@ -65,43 +55,43 @@ contract Markets {
 
         //decrement contributor wallet balance 
         //increment pool 
-        Market[poolBalance] = 0; 
+        // Market[poolBalance] = 0; 
 
-        Market[poolBalance]++;
+        // Market[poolBalance]++;
 
 
 
         //return true if completed successfully
     }
 
-    eventDefaultOccured(address borrower, address lender, Market[contract] specifiedMarket );
+    // eventDefaultOccured(address borrower, address lender, Market[contract] specifiedMarket );
 
     //event emitted in the event that a default occurs 
     //needs to contain references to the borrower, lender, and the specific contract that was defaulted upon 
 
-    function handleDefault(borrower, lender, contract) returns (true) {
+    function handleDefault(address borrower, address lender) returns (bool) {
 
 
         //return money to lender 
 
         //check before doing this 
         //ensure default has occured --> event listener? 
-        Market[poolBalance]--;
+        // Market[poolBalance]--;
 
        // defaultAmount = Markets[Requests].amountBorrowed
         //decrement pool balance and move coins to the lender address 
-        if (Market[poolBalance] >= defaultAmount) {
+        // if (Market[poolBalance] >= defaultAmount) {
             //send the default amount 
 
 
 
-        }
-        else {
-            //forfeit the entire pool 
+        // }
+        // else {
+        //     //forfeit the entire pool 
 
-            //Post PC: 
-            //
-        }
+        //     //Post PC: 
+        //     //
+        // }
 
 
 

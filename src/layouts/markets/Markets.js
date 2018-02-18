@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Table } from "react-bootstrap";
 import { Link } from 'react-router'
 
+import CreateMarketContainer from '../../ui/createMarket/CreateMarketContainer';
+
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 class Markets extends Component {
@@ -18,7 +20,8 @@ class Markets extends Component {
         <div className="pure-g">
           <div className="pure-u-1-1">
             <h1>Markets</h1>
-            
+            <CreateMarketContainer/>
+            <br/><br/>
 
             <Table striped bordered condensed hover>
               <thead>

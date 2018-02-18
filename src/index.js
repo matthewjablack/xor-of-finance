@@ -18,6 +18,7 @@ import Driver from './layouts/driver/Driver'
 import Details from './layouts/details/Details'
 import SignUp from './user/layouts/signup/SignUp'
 import Profile from './user/layouts/profile/Profile'
+import OldHomepage from './old_homepage/App'
 
 // Redux Store
 import store from './store'
@@ -48,6 +49,7 @@ ReactDOM.render((
           <Route path="payment" component={UserIsAuthenticated(Payment)} />
           <Route path="driver" component={UserIsAuthenticated(Driver)} />
           <Route path="/details/:id" component={UserIsAuthenticated(Details)}/>
+          <Route path="app" component={UserIsAuthenticated(OldHomepage)}/>
         </Route>
       </Router>
     </Provider>

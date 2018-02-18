@@ -9,12 +9,14 @@ module.exports = (deployer, network, accounts) => {
     var Ownable = artifacts.require("./zeppelin/ownership/Ownable.sol");
     var Killable = artifacts.require("./zeppelin/lifecycle/Killable.sol");
     var Authentication = artifacts.require("./Authentication.sol");
+    var Markets = artifacts.require("./Markets.sol");
 
     deployer.deploy(Ownable);
     deployer.link(Ownable, Killable);
     deployer.deploy(Killable);
     deployer.link(Killable, Authentication);
     deployer.deploy(Authentication);
+    deployer.deploy(Markets);
     deployer.deploy(PermissionsLib);
     deployer.link(PermissionsLib, DummyContract);
     deployer.deploy(DummyContract);

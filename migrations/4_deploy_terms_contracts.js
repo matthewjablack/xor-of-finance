@@ -21,6 +21,7 @@ module.exports = (deployer, network, accounts) => {
             const dummyREPTokenAddress = await tokenRegistry.getTokenAddress("REP");
             const dummyMKRTokenAddress = await tokenRegistry.getTokenAddress("MKR");
             const dummyZRXTokenAddress = await tokenRegistry.getTokenAddress("ZRX");
+            const dummyDAITokenAddress = await tokenRegistry.getTokenAddress("DAI");
 
             const simpleInterestREPTermsContract = await SimpleInterestTermsContract.new(
                 debtRegistry.address,
@@ -40,9 +41,16 @@ module.exports = (deployer, network, accounts) => {
                 repaymentRouter.address,
             );
 
+            const simpleInterestDAITermsContract = await SimpleInterestTermsContract.new(
+                debtRegistry.address,
+                dummyDAITokenAddress,
+                repaymentRouter.address,
+            );
+
             addressToTermsContractAddress[dummyREPTokenAddress] = simpleInterestREPTermsContract.address;
             addressToTermsContractAddress[dummyMKRTokenAddress] = simpleInterestMKRTermsContract.address;
             addressToTermsContractAddress[dummyZRXTokenAddress] = simpleInterestZRXTermsContract.address;
+            addressToTermsContractAddress[dummyDAITokenAddress] = simpleInterestDAITermsContract.address;
         } else {
             // TODO fill in mainnet implementation
         }

@@ -5,22 +5,22 @@ import BigNumber from "bignumber.js";
 
 import { Button, FormGroup, ControlLabel, FormControl, HelpBlock, Well } from "react-bootstrap";
 
-import DebtKernel from '../build/contracts/DebtKernel.json'
-import RepaymentRouter from '../build/contracts/RepaymentRouter.json'
-import TokenTransferProxy from '../build/contracts/TokenTransferProxy.json'
-import TokenRegistry from '../build/contracts/TokenRegistry.json'
-import DebtToken from '../build/contracts/DebtToken.json'
-import DebtRegistry from '../build/contracts/DebtRegistry.json'
-import TermsContractRegistry from "../build/contracts/TermsContractRegistry.json"
+import DebtKernel from '../../build/contracts/DebtKernel.json'
+import RepaymentRouter from '../../build/contracts/RepaymentRouter.json'
+import TokenTransferProxy from '../../build/contracts/TokenTransferProxy.json'
+import TokenRegistry from '../../build/contracts/TokenRegistry.json'
+import DebtToken from '../../build/contracts/DebtToken.json'
+import DebtRegistry from '../../build/contracts/DebtRegistry.json'
+import TermsContractRegistry from "../../build/contracts/TermsContractRegistry.json"
 
 import getWeb3 from './utils/getWeb3'
 
 import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
-class App extends Component {
+class OldHomepage extends Component {
   constructor(props) {
     super(props)
 
@@ -245,7 +245,8 @@ class App extends Component {
         tokenTransferProxyAddress: TokenTransferProxy.networks[networkId].address,
         tokenRegistryAddress: TokenRegistry.networks[networkId].address,
         debtTokenAddress: DebtToken.networks[networkId].address,
-        termsContractRegistry: TermsContractRegistry.networks[networkId].address
+        termsContractRegistry: TermsContractRegistry.networks[networkId].address,
+        debtRegistryAddress: DebtRegistry.networks[networkId].address,
     }
     
     const dharma = new Dharma(this.state.web3.currentProvider, dharmaConfig);
@@ -259,8 +260,7 @@ class App extends Component {
         <main className="container">
           <div className="pure-g">
             <div className="pure-u-1-1">
-            <h1>Dharma Javascript Library Starter Kit</h1>
-            <h3><b>Generate a simple loan request:</b></h3>
+            <h1>Loan Request</h1>
             <form>
                <FormGroup
                  controlId="formBasicText"
@@ -423,4 +423,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default OldHomepage

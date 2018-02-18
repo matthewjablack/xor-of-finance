@@ -8,6 +8,7 @@ class Profile extends Component {
         <div className="pure-g">
           <div className="pure-u-1-1">
             <h1>Profile</h1>
+            <p>Credit Score: 4.5</p>
             <p>Edit your account details here.</p>
             <ProfileFormContainer />
           </div>
