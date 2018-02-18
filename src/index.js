@@ -9,6 +9,7 @@ import getWeb3 from './util/web3/getWeb3'
 // Layouts
 import App from './App'
 import Home from './layouts/home/Home'
+import Market from './layouts/market/Market'
 import Markets from './layouts/markets/Markets'
 import Dashboard from './layouts/dashboard/Dashboard'
 import Landing from './layouts/landing/Landing'
@@ -39,6 +40,7 @@ ReactDOM.render((
         <Route path="/" component={App}>
           <IndexRoute component={Landing} />
           <Route path="markets" component={UserIsAuthenticated(Markets)} />
+          <Route path="/markets/:id" component={UserIsAuthenticated(Market)}/>
           <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
           <Route path="signup" component={UserIsNotAuthenticated(SignUp)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />

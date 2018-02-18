@@ -1,46 +1,21 @@
-//insurance 
-
-//take an input of amount and add that to the total so far = 
-
-//in event that a contract defaults, take from the insurance pool 
-
 //contract for the market 
 pragma solidity ^0.4.18;
 
-//generalize for N markets 
-
 contract Markets {
 
-    //
-
-
     struct Market {
-       // address marketAddress; TODO: store in mapping
-
         uint marketId; 
         uint poolBalance;
         uint riskMetric; 
-
     }
 
     struct Request {
-
-        uint borrowerId; 
-        uint lenderId; 
-        //borrower
-        //lender 
-        //contract reference --> address 
-        address contractReference;
-
-
-
-        //interest in the amount 
+        address debtor;
+        address creditor;
+        uint amount;
+        uint 
     }
-
-    //post-POC questions: what's cheaper? storing 2D arrays in contract storage/memory or initiating new contracts
-
-
-
+    
     //only done for POC -- needs to be revisited (storage too expensive)
     //needs a decentralized ledger of markets 
     Market[] public markets; 
