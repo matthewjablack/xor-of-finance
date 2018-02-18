@@ -1,16 +1,20 @@
 <img src="https://s3-us-west-2.amazonaws.com/dharma-assets/logo+orange.png"  width=300/>
 
 ------------
+We wanted to be able to be more descriptive about our idea, so we wrote a short paper that explores the details. Please read it if you have time: https://drive.google.com/file/d/1YiwlB8AmH6hUL06Ici8tPUzjkD4MHdga/view?usp=sharing
 
 #### High Level Overview
 
 XOR Open Loan is a unique open source and completely decentralized system that makes loan contracts that are low cost for borrowers, high return for lenders, and contain end-to-end transparency and immutability on the blockchain. XOR Open Loan removes the middleman by allowing lenders to vet borrowers themselves with a trust system.In addition, because lenders are themselves incentivized to make a maximum return on investment, they are incentivized to make the fee-to-interest ratio on the loan as low as possible. This creates a situation where both parties get the best possible deal. The XOR Open Loan system records all loan contracts on a public ledger on the blockchain. This means that all contracts are guaranteed to be transparent. A transparent open source loan contract allows for the possibility of infinite numbers of derivative markets based on those debt obligations that can be created by anyone with internet access.
 
-#### 
+#### Technical Specifications
 
-#### Challenges
+We used a backend with node.js, a frontend with React, and blockchain code on Solidity. We also used Dharma's API js plugin and Dharma base level contracts.
 
-Coming up with mechanisms that ensured true decentralization with stability was a pretty difficult and lengthy process. The mechanisms have to be precise in order to create a system of mutual benefit, a key concept throughout our implementation of XOR Open Loan. In addition, we had trouble debugging with the stack we used (Dharma and Solidity) which also took up a lot of time.
+Using React, we created a simple UI where one can access the mock debt obligation market. The UI interfaces with the Solidity code and the Dharma contracts to form a small POC simulation. We spent a huge amount of time trying to work through Dharma, so we were unable to fully interface Solidity with the UI directly. However, we progressed greatly with Dharma and filled out the logical functionality of the loan paradigm. 
+
+Programming aside, the real technical challenge was in coming up with intelligent mechanisms to produce optimality in our system. The choices in the governance of funds are immutable once they are uploaded, so we took care to make them relatively foolproof. In addition, we were careful to avoid any sort of central authority. We made the loan underwriters the loaners themselves so as to avoid a third party with a conflict of interest. 
+
 
 Install dependencies:
 ```
