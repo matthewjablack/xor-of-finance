@@ -20,6 +20,7 @@ contract Markets {
 
     function getCreditors(uint marketIndex) returns (uint) {
         return markets[marketIndex].creditors;
+        //
     }
 
 
