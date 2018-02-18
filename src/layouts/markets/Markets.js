@@ -29,19 +29,19 @@ class Markets extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>2</td>
+                  <td><Link href="/markets/2" /></td>
                   <td>3.2</td>
                   <td>Otto</td>
                   <td>@mdo</td>
                 </tr>
                 <tr>
-                  <td>3</td>
+                  <td><Link href="/markets/3" /></td>
                   <td>5.4</td>
                   <td>Thornton</td>
                   <td>@fat</td>
                 </tr>
                 <tr>
-                  <td>1</td>
+                  <td><Link href="/markets/1" /></td>
                   <td>1.2</td>
                   <td>@twitter</td>
                   <td>@twitter</td>
