@@ -18,6 +18,7 @@ class Markets extends Component {
         <div className="pure-g">
           <div className="pure-u-1-1">
             <h1>Markets</h1>
+            
 
             <Table striped bordered condensed hover>
               <thead>
@@ -32,20 +33,44 @@ class Markets extends Component {
                 <tr>
                   <td><Link href="/markets/2">2</Link></td>
                   <td>3.2</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>8</td>
+                  <td>5</td>
                 </tr>
                 <tr>
                   <td><Link href="/markets/3">3</Link></td>
                   <td>5.4</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
+                  <td>4</td>
+                  <td>6</td>
                 </tr>
                 <tr>
                   <td><Link href="/markets/1">1</Link></td>
                   <td>1.2</td>
-                  <td>@twitter</td>
-                  <td>@twitter</td>
+                  <td>5</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td><Link href="/markets/1">5</Link></td>
+                  <td>1.2</td>
+                  <td>8</td>
+                  <td>21</td>
+                </tr>
+                <tr>
+                  <td><Link href="/markets/1">8</Link></td>
+                  <td>1.2</td>
+                  <td>20</td>
+                  <td>34</td>
+                </tr>
+                <tr>
+                  <td><Link href="/markets/1">9</Link></td>
+                  <td>1.2</td>
+                  <td>34</td>
+                  <td>23</td>
+                </tr>
+                <tr>
+                  <td><Link href="/markets/1">10</Link></td>
+                  <td>1.2</td>
+                  <td>3</td>
+                  <td>20</td>
                 </tr>
               </tbody>
             </Table>

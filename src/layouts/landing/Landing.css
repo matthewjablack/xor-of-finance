@@ -1,0 +1,30 @@
+.landing {
+  width:100%;
+  height:100%;
+  background: url("http://cryptotimes.org/wp-content/uploads/2017/10/blue-network-stage-background_zyd17u9_.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: absolute;
+}
+
+.landing h1 {
+  text-align: center;
+  margin-top: 200px;
+  color:white;
+}
+
+.landing p {
+  text-align: center;
+  color:white;
+  padding:0 200px;
+}
+
+.landing a {
+  text-align: center;
+}
+
+.title-link {
+  font-size: 30px;
+}
