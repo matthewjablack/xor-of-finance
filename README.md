@@ -14,4 +14,7 @@ Using React, we created a simple UI where one can access the mock debt obligatio
 
 Programming aside, the real technical challenge was in coming up with intelligent mechanisms to produce optimality in our system. The choices in the governance of funds are immutable once they are uploaded, so we took care to make them relatively foolproof. In addition, we were careful to avoid any sort of central authority. We made the loan underwriters the loaners themselves so as to avoid a third party with a conflict of interest. 
 
+![Screenshot](shot1.png)
+
+![Screenshot](shot2.png)
 
