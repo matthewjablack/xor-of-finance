@@ -6,7 +6,15 @@ module.exports = (deployer, network, accounts) => {
     const DebtKernel = artifacts.require("DebtKernel");
     const RepaymentRouter = artifacts.require("RepaymentRouter");
     const TokenTransferProxy = artifacts.require("TokenTransferProxy");
+    var Ownable = artifacts.require("./zeppelin/ownership/Ownable.sol");
+    var Killable = artifacts.require("./zeppelin/lifecycle/Killable.sol");
+    var Authentication = artifacts.require("./Authentication.sol");
 
+    deployer.deploy(Ownable);
+    deployer.link(Ownable, Killable);
+    deployer.deploy(Killable);
+    deployer.link(Killable, Authentication);
+    deployer.deploy(Authentication);
     deployer.deploy(PermissionsLib);
     deployer.link(PermissionsLib, DummyContract);
     deployer.deploy(DummyContract);
