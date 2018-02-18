@@ -32,6 +32,13 @@ class App extends Component {
     this.onGenerateDebtOrder = this.onGenerateDebtOrder.bind(this);
     this.onSignDebtOrder = this.onSignDebtOrder.bind(this);
 
+    this.onSetUnlimitedProxyAllowanceAsync = this.onSetUnlimitedProxyAllowanceAsync.bind(this);
+    this.onFillAsync = this.onFillAsync.bind(this);
+
+    this.handleDebtOrderChange = this.handleDebtOrderChange.bind(this);
+    this.handleTokenAddressChange = this.handleTokenAddressChange.bind(this);
+
+
     this.state = {
       storageValue: 0,
       web3: null,
@@ -88,6 +95,18 @@ class App extends Component {
           termLength: e.target.value
       });
   }
+
+  handleDebtOrderChange(e) {
+    this.setState({
+      debtOrder: e.target.value
+    })
+  }
+
+  handleTokenAddressChange(e) {
+    this.setState({
+      tokenAddress: e.target.value
+    })
+  }
   
   async onGenerateDebtOrder(e) {
       const { principalAmount, principalTokenSymbol, interestRate, amortizationUnit, termLength } = this.state;
@@ -125,6 +144,24 @@ class App extends Component {
       const signedDebtOrder = Object.assign({ debtorSignature }, debtOrder);   
             
       this.setState({ debtOrder: JSON.stringify(signedDebtOrder) });
+  }
+
+  async onSetUnlimitedProxyAllowanceAsync(e) {
+    const data = await this.state.dharma.token.setUnlimitedProxyAllowanceAsync(this.state.tokenAddress);
+
+    debugger
+
+    console.log(data);
+  }
+
+  async onFillAsync(e) {
+    const { principalAmount, principalTokenSymbol, interestRate, amortizationUnit, termLength } = this.state;
+
+    // const debtOrder = JSON.parse(this.state.debtOrder);
+
+    const transaction = await this.state.dharma.order.fillAsync(this.state.debtOrder);
+
+    this.setState({ transaction: JSON.stringify(transaction) });
   }
 
   async instantiateDharma() {
@@ -239,6 +276,47 @@ class App extends Component {
                   <code>{this.state.debtOrder}</code>
                   
              </form>
+
+
+             <form>
+               <FormGroup
+                 controlId="formBasicText"
+               >
+                 <ControlLabel>Debt Order</ControlLabel>
+                 <FormControl
+                   type="text"
+                   placeholder="Debt Order"
+                   onChange={this.handleDebtOrderChange}
+                 />
+                 <HelpBlock>Enter the amount of tokens you would like to borrow.</HelpBlock>
+               </FormGroup>
+
+               <FormGroup
+                 controlId="formBasicText"
+               >
+                 <ControlLabel>Token Address Change</ControlLabel>
+                 <FormControl
+                   type="text"
+                   placeholder="token address"
+                   onChange={this.handleTokenAddressChange}
+                 />
+               </FormGroup>
+
+                <Button
+                  bsStyle="primary"
+                  onClick={this.onSetUnlimitedProxyAllowanceAsync}
+                >
+                  Set unlimited proxy allowance Async
+                </Button>
+                <br/><br/>
+                <Button
+                  bsStyle="primary"
+                  onClick={this.onFillAsync}
+                >
+                  Fill Async
+                </Button>
+                <code>{this.state.transaction}</code>
+               </form>
             </div>
           </div>
         </main>
