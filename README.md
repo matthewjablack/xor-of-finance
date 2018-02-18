@@ -1,6 +1,5 @@
-------------
+
 We wanted to be able to be more descriptive about our idea, so we wrote a short paper that explores the details. Please read it if you have time: https://drive.google.com/file/d/1YiwlB8AmH6hUL06Ici8tPUzjkD4MHdga/view?usp=sharing
-------------
 
 #### High Level Overview
 
@@ -15,6 +14,11 @@ Using React, we created a simple UI where one can access the mock debt obligatio
 Programming aside, the real technical challenge was in coming up with intelligent mechanisms to produce optimality in our system. The choices in the governance of funds are immutable once they are uploaded, so we took care to make them relatively foolproof. In addition, we were careful to avoid any sort of central authority. We made the loan underwriters the loaners themselves so as to avoid a third party with a conflict of interest. 
 
 ![Screenshot](shot1.png)
+Here, we show our splash page. 
 
 ![Screenshot](shot2.png)
+This is a window showing markets with their measured risks, number of debtors, number of creditors, and market ID. This is all the public information that is necessary to identify a market, besides the information of the constituents of the market. From this screen, a participant can pick the optimal market to either put bids in or to place a request in. 
+
+![Screenshot](shot3.png)
+This screen shows an example market that a creditor can participate in. In this implementation, the lender is a naive human being that pushes a button to place a bid for a loan. He then creates his offer and uses that with the bid. 
 
