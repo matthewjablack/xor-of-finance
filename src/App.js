@@ -38,6 +38,9 @@ class App extends Component {
     this.handleDebtOrderChange = this.handleDebtOrderChange.bind(this);
     this.handleTokenAddressChange = this.handleTokenAddressChange.bind(this);
 
+    this.onCreditorSignDebtOrder = this.onCreditorSignDebtOrder.bind(this);
+    this.onUnderwriterSignDebtOrder = this.onUnderwriterSignDebtOrder.bind(this);
+
 
     this.state = {
       storageValue: 0,
@@ -146,10 +149,42 @@ class App extends Component {
       this.setState({ debtOrder: JSON.stringify(signedDebtOrder) });
   }
 
+  async onCreditorSignDebtOrder(e) {
+      if (!this.state.debtOrder) {
+          throw new Error("No debt order has been generated yet!");
+      }
+      
+      const debtOrder = JSON.parse(this.state.debtOrder);
+          
+      debtOrder.principalAmount = new BigNumber(debtOrder.principalAmount);
+        debtOrder.creditor = this.state.accounts[0];        
+    
+      // Sign as creditor 
+      const creditorSignature = await this.state.dharma.sign.asCreditor(debtOrder);
+      const signedDebtOrder = Object.assign({ creditorSignature }, debtOrder);   
+            
+      this.setState({ debtOrder: JSON.stringify(signedDebtOrder) });
+  }
+
+  async onUnderwriterSignDebtOrder(e) {
+      if (!this.state.debtOrder) {
+          throw new Error("No debt order has been generated yet!");
+      }
+      
+      const debtOrder = JSON.parse(this.state.debtOrder);
+          
+      debtOrder.principalAmount = new BigNumber(debtOrder.principalAmount);
+        debtOrder.underwriter = this.state.accounts[0];        
+    
+      // Sign as debtor 
+      const underwriterSignature = await this.state.dharma.sign.asUnderwriter(debtOrder);
+      const signedDebtOrder = Object.assign({ underwriterSignature }, debtOrder);   
+            
+      this.setState({ debtOrder: JSON.stringify(signedDebtOrder) });
+  }
+
   async onSetUnlimitedProxyAllowanceAsync(e) {
     const data = await this.state.dharma.token.setUnlimitedProxyAllowanceAsync(this.state.tokenAddress);
-
-    debugger
 
     console.log(data);
   }
@@ -301,6 +336,22 @@ class App extends Component {
                    onChange={this.handleTokenAddressChange}
                  />
                </FormGroup>
+
+                <Button
+                  bsStyle="primary"
+                  onClick={this.onCreditorSignDebtOrder}
+                >
+                  Sign as Creditor
+                </Button>
+                <br/><br/>
+
+                <Button
+                  bsStyle="primary"
+                  onClick={this.onUnderwriterSignDebtOrder}
+                >
+                  Sign as Underwriter
+                </Button>
+                <br/><br/>
 
                 <Button
                   bsStyle="primary"
