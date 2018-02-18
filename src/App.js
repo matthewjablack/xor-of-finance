@@ -10,6 +10,7 @@ import RepaymentRouter from '../build/contracts/RepaymentRouter.json'
 import TokenTransferProxy from '../build/contracts/TokenTransferProxy.json'
 import TokenRegistry from '../build/contracts/TokenRegistry.json'
 import DebtToken from '../build/contracts/DebtToken.json'
+import DebtRegistry from '../build/contracts/DebtRegistry.json'
 import TermsContractRegistry from "../build/contracts/TermsContractRegistry.json"
 
 import getWeb3 from './utils/getWeb3'
@@ -40,6 +41,10 @@ class App extends Component {
 
     this.onCreditorSignDebtOrder = this.onCreditorSignDebtOrder.bind(this);
     this.onUnderwriterSignDebtOrder = this.onUnderwriterSignDebtOrder.bind(this);
+
+    this.handleToAddressChange = this.handleToAddressChange.bind(this);
+
+    this.onTransferAsync = this.onTransferAsync.bind(this);
 
 
     this.state = {
@@ -108,6 +113,12 @@ class App extends Component {
   handleTokenAddressChange(e) {
     this.setState({
       tokenAddress: e.target.value
+    })
+  }
+
+  handleToAddressChange(e) {
+    this.setState({
+      toAddress: e.target.value
     })
   }
   
@@ -189,12 +200,25 @@ class App extends Component {
     console.log(data);
   }
 
+  async onTransferAsync(e) {
+    const principalAmount = new BigNumber(this.state.principalAmount);
+    console.log('principalAmount');
+    console.log(principalAmount)
+
+    const transaction = await this.state.dharma.token.transferAsync(this.state.tokenAddress, this.state.toAddress, principalAmount);
+
+    this.setState({ transaction: JSON.stringify(transaction) });
+  }
+
   async onFillAsync(e) {
-    const { principalAmount, principalTokenSymbol, interestRate, amortizationUnit, termLength } = this.state;
+    // const { principalAmount, principalTokenSymbol, interestRate, amortizationUnit, termLength } = this.state;
 
     // const debtOrder = JSON.parse(this.state.debtOrder);
 
-    const transaction = await this.state.dharma.order.fillAsync(this.state.debtOrder);
+    const debtOrder = JSON.parse(this.state.debtOrder);
+
+
+    const transaction = await this.state.dharma.order.fillAsync(debtOrder);
 
     this.setState({ transaction: JSON.stringify(transaction) });
   }
@@ -337,6 +361,17 @@ class App extends Component {
                  />
                </FormGroup>
 
+               <FormGroup
+                 controlId="formBasicText"
+               >
+                 <ControlLabel>To Address</ControlLabel>
+                 <FormControl
+                   type="text"
+                   placeholder="to address"
+                   onChange={this.handleToAddressChange}
+                 />
+               </FormGroup>
+
                 <Button
                   bsStyle="primary"
                   onClick={this.onCreditorSignDebtOrder}
@@ -360,6 +395,15 @@ class App extends Component {
                   Set unlimited proxy allowance Async
                 </Button>
                 <br/><br/>
+
+                <Button
+                  bsStyle="primary"
+                  onClick={this.onTransferAsync}
+                >
+                  Transfer Async
+                </Button>
+                <br/><br/>
+
                 <Button
                   bsStyle="primary"
                   onClick={this.onFillAsync}
