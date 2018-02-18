@@ -1,9 +1,3 @@
-//insurance 
-
-//take an input of amount and add that to the total so far = 
-
-//in event that a contract defaults, take from the insurance pool 
-
 //contract for the market 
 pragma solidity ^0.4.18;
 
@@ -11,45 +5,23 @@ pragma solidity ^0.4.18;
 
 contract Markets {
 
-    //
-
-    function getDebtors(uint marketIndex) returns (uint) {
-        return markets[marketIndex].debtors;
-
-    }
-
-    function getCreditors(uint marketIndex) returns (uint) {
-        return markets[marketIndex].creditors;
-        //
-    }
-
-
     struct Market {
-       // address marketAddress; TODO: store in mapping
-        
-
-        //uint marketId; 
-        uint debtors;
-        uint creditors; 
-
-        uint poolBalance;
-        uint riskMetric; 
-        
-
+      uint poolBalance;
+      bytes32 riskMetric; 
     }
 
     struct Request {
+      address borrower;
+      address lender;
 
-        uint borrowerId; 
-        uint lenderId; 
-        //borrower
-        //lender 
-        //contract reference --> address 
-        address contractReference;
+      // uint borrowerId; 
+      // uint lenderId; 
+      //borrower
+      //lender 
+      //contract reference --> address 
+      // address contractReference;
 
-
-
-        //interest in the amount 
+      //interest in the amount 
     }
 
     //post-POC questions: what's cheaper? storing 2D arrays in contract storage/memory or initiating new contracts
@@ -64,6 +36,20 @@ contract Markets {
     //4) multiple markets within contract as array of market structs 
     //each market will have details on timestamps involved (time variable t determines the time over which a lender gets his money back in the event of a default)
 
+    function createMarket(bytes32 riskMetric) {
+      
+    }
+
+
+    function getDebtors(uint marketIndex) returns (uint) {
+        return markets[marketIndex].debtors;
+
+    }
+
+    function getCreditors(uint marketIndex) returns (uint) {
+        return markets[marketIndex].creditors;
+        //
+    }
 
 
     //this function needs to be permissioned intelligently..
