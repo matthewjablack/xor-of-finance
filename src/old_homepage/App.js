@@ -215,11 +215,10 @@ class OldHomepage extends Component {
 
     // const debtOrder = JSON.parse(this.state.debtOrder);
 
+
     const debtOrder = JSON.parse(this.state.debtOrder);
-
-    // const test = await this.state.dharma.contracts.loadDebtRegistryAsync();
-
-    // console.log(test);
+          
+    debtOrder.principalAmount = new BigNumber(debtOrder.principalAmount);
 
     const transaction = await this.state.dharma.order.fillAsync(debtOrder);
 

@@ -1,7 +1,4 @@
-//contract for the market 
 pragma solidity ^0.4.18;
-
-//generalize for N markets 
 
 contract Markets {
 
@@ -22,10 +19,6 @@ contract Markets {
 
     Market[] public markets; 
 
-
-    //4) multiple markets within contract as array of market structs 
-    //each market will have details on timestamps involved (time variable t determines the time over which a lender gets his money back in the event of a default)
-
     function createMarket(bytes32 _riskMetric) {
       uint[] memory _requestIndexes;
       markets.push(Market(0, _riskMetric, _requestIndexes));
@@ -40,6 +33,10 @@ contract Markets {
     //     return markets[marketIndex].creditors;
     //     //
     // }
+
+    function createLoan(uint marketIndex) payable {
+      
+    }
 
 
     //this function needs to be permissioned intelligently..

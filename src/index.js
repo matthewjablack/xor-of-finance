@@ -19,6 +19,7 @@ import Details from './layouts/details/Details'
 import SignUp from './user/layouts/signup/SignUp'
 import Profile from './user/layouts/profile/Profile'
 import OldHomepage from './old_homepage/App'
+import Voting from './layouts/voting/Voting'
 
 // Redux Store
 import store from './store'
@@ -50,6 +51,7 @@ ReactDOM.render((
           <Route path="driver" component={UserIsAuthenticated(Driver)} />
           <Route path="/details/:id" component={UserIsAuthenticated(Details)}/>
           <Route path="app" component={UserIsAuthenticated(OldHomepage)}/>
+          <Route path="voting" component={UserIsAuthenticated(Voting)}/>
         </Route>
       </Router>
     </Provider>
